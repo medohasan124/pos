@@ -13,6 +13,7 @@ return [
     |
     */
 
+      // slider
     'dashboard' => 'Dashboard',
     'users' => 'Users',
     'add' => 'Add',
@@ -20,6 +21,7 @@ return [
     'update' => 'Update',
     'delete' => 'Delete',
     'search' => 'Search',
+    'logout' => 'Logout',
 
     //add user
 
@@ -29,5 +31,10 @@ return [
     'f_name'=> 'Fisrst Name' ,
     'l_name'=> 'Last Name' ,
     'email'=> 'Email' ,
+
+
+   
+
+    
 
 ];

@@ -21,6 +21,8 @@
 
 @notifyCss
  
+  <link rel="stylesheet" href="{{asset('/plugins/datatables/jquery.dataTables.css')}}">
+
 
  <style>
    

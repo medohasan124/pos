@@ -20,6 +20,7 @@ return [
     'update' => 'تحديث',
     'delete' => 'حذف',
     'search' => 'بحث',
+    'logout' => 'تسجيل خروج',
 
     //add User
 

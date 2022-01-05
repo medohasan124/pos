@@ -3,22 +3,24 @@
 
 
 
-<h1 class='h1'> @lang('user.add')</h1>
+<h1 class='h1'> @lang('user.edit')</h1>
 @include('dashboard.errors')
 
 
 
      <x:notify-messages />
      
-<form action="{{route('users.store')}}" method='post'>
-	<input type="hidden" name="_token" value='{{csrf_token()}}'>
+<form action="{{route('users.update' , $id)}}" method='POST'>
+	{{csrf_field()}}
+	{{method_field('put')}}
+
 <div class='add'>
 	<div class='container'>
 		<div class='row'>
 			  
 			<div class='col-6'>
 				<label>@lang('user.username')</label>
-				<input type="text" name="username" class='form-control' value='{{old("username")}}'>
+				<input type="text" name="username" class='form-control' value='{{$data->first_name}}'>
 			</div>
 
 			<div class='col-6'>
@@ -28,26 +30,26 @@
 
 			<div class='col-6'>
 				<label>@lang('user.f_name')</label>
-				<input type="text" name="f_name" class='form-control' value='{{old("f_name")}}'>
+				<input type="text" name="f_name" class='form-control' value='{{$data->first_name}}'>
 			</div>
 
 			
 
 			<div class='col-6'>
 				<label>@lang('user.Config_password')</label>
-				<input type="text" name="password_confirmation" class='form-control' value='{{old("password_confirmation")}}'>
+				<input type="text" name="password_confirmation" class='form-control' value='{{old("password")}}'>
 			</div>
 
 			
 
 			<div class='col-6'>
 				<label>@lang('user.l_name')</label>
-				<input type="text" name="l_name" class='form-control' value='{{old("l_name")}}'>
+				<input type="text" name="l_name" class='form-control' value='{{$data->last_name}}'>
 			</div>
 
 			<div class='col-6'>
 				<label>@lang('user.email')</label>
-				<input type="text" name="email" class='form-control' value='{{old("email")}}'>
+				<input type="text" name="email" class='form-control' value='{{$data->email}}'>
 			</div>
 			<hr>
 			
@@ -61,6 +63,9 @@
 
 $roles = ['users' , 'catigory' , 'products'];
 $permissions = DB::table('permissions')->get();
+$permission_user = DB::table('permission_user')->where('user_id' , $id)->orderBy('permission_id' , 'desc')->get('permission_id');
+
+
 
 @endphp
 
@@ -77,9 +82,17 @@ $permissions = DB::table('permissions')->get();
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
     	@foreach($roles as $index => $row)
+
     		  <div class="tab-pane fade show {{ $active = $index == 0 ? 'active' : '' }}" id="list-{{$row}}" role="tabpanel" aria-labelledby="list-home-list">
-    		  	@foreach($permissions as $rows)
-    		  	<label><input type='checkbox' name='permission[]' value='{{$rows->id}}'> {{$rows->display_name}}</label>
+
+    		  	@foreach($permissions as $indexs => $rows)
+    		  	<label><input type='checkbox'
+
+    		  		@if($data->isAbleTo($rows->name) && $index == 0)
+    		  			checked
+    		  		@endif
+
+    		  	 name='permission_Users[]' value='{{$rows->id}}'> {{$rows->display_name}}</label>
     		  	@endforeach
     		  </div>
     	@endforeach
@@ -88,7 +101,7 @@ $permissions = DB::table('permissions')->get();
 </div>
 
 
-<button class='btn btn-success'><i class='fas fa-plus'></i> @lang('user.add')</button>
+<button class='btn btn-success'><i class='fas fa-pen'></i> @lang('user.edit')</button>
 	</div>
 </div>
 </form>

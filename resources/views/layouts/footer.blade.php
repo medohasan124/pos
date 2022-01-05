@@ -30,7 +30,15 @@
 {{-- <script src="{{asset('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> --}}
 <!-- AdminLTE App -->
 <script src="{{asset('/dist/js/adminlte.js')}}"></script>
+<script src="{{asset('/plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('/vue/vue.js')}}"></script>
+
+
+
+
 
 @notifyJs
+
+@stack('dataTables')
 </body>
 </html>

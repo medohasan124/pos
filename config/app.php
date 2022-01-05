@@ -175,7 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-         Mckenziearts\Notify\LaravelNotifyServiceProvider::class
+         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
+
+          
+         
 
     ],
 

@@ -12,7 +12,8 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'super_admin' => ['users' => 'c,r,u,d']
+
+      
         
     ],
 

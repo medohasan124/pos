@@ -1,16 +1,15 @@
-@extends('layouts.home')
+ @extends('layouts.home')
 @section('content')
 
-<?php 
 
 
-?>
+<div id='app'>
 
-
+	@include('dashboard.modalDelete')
 <div class='tables'>
 	   <x:notify-messages />
 
-	<table class="table table-striped text-center">
+	<table class="table table-striped text-center" id='test'>
 	  <thead>
 	    <tr>
 	      <th scope="col">#</th>
@@ -35,7 +34,10 @@
 	  					
 	  					<button class='btn btn-primary'><i class='fas fa-search'></i>  @lang('user.search')</button>
 
+
+	  					@if(auth()->user()->isAbleTo('c'))
 	  					<a href='{{route('users.create')}}' class='btn btn-success'><i class='fas fa-plus'></i>  @lang('user.add')</a>
+	  					@endif
 	  				</div>
 	  				
 	  			</div>
@@ -51,8 +53,17 @@
 	  		<td>{{$row->last_name}}</td>
 	  		<td>{{$row->email}}</td>
 	  		<td>
-	  			<a href='#' class="btn btn-primary">Edit <i class='fa fa-edit'></i></a>
-	  			<a href='#' class="btn btn-danger">Delete <i class='fa fa-trash'></i></a>
+
+	  			@if(auth()->user()->isAbleTo('e'))
+
+	  			<a href='{{route("users.edit" , $row->id)}}' class="btn btn-primary">@lang('user.edit') <i class='fa fa-edit'></i></a>
+	  			@endif
+	  			
+	  			@if(auth()->user()->isAbleTo('d'))
+
+	  			<a  id='{{$row->id}}' href='#' data-toggle="modal" data-target="#delete-{{$row->id}}" class="btn btn-danger deleteBtn">@lang('user.delete') <i class='fa fa-trash'></i></a>
+	  			@endif
+
 	  		</td>
 	  	</tr>
 	  	@endforeach
@@ -63,6 +74,50 @@
 </table>
 </div>
 
+</div>
+
+
+
 @endsection
 
+@push('dataTables')
+
+<script>
+	
+	$(document).ready( function () {
+    $('#test').DataTable();
+} );
+
+
+$('.deleteBtn').on('click' , function(){
+	var id = $(this).attr('id');
+
+	var datatarget = $(this).attr('data-target');
+
+	var ids = datatarget.split('#');
+
+	
+
+	$('.deleteModal').attr('id' , ids[1]);
+
+
+
+	var urls = $('.modalAction').attr('action');
+
+	var splets = urls.split('/') ;
+	splets.pop();
+	splets.push(id) ;
+	splets[1] = '/';
+
+	console.log(splets);
+
+	$('.modalAction').attr('action' , '{{url("users")}}/'+id);
+
+	
+})
+
+
+</script>
+
+@endpush
 

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(
 [
 	'prefix' => LaravelLocalization::setLocale(),
-	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect' ]
+	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect' , 'auth' ]
 ], function(){ 
 
 	
@@ -29,6 +29,13 @@ Route::prefix('dashboard')->name('dashboard')->group(function(){
 
 
 Route::resource('users', 'UserController');
+
+
+Route::get('logOut', function(){
+	Auth::logout();
+  return redirect('/');
+})->name('logOut');
+
 
 });
 
