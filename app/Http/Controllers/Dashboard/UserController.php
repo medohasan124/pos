@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User ;
 use App\DataTables\UsersDataTable;
+use Image ;
+use File;
 class UserController extends Controller
 {
     /**
@@ -28,6 +30,8 @@ class UserController extends Controller
     public function create()
     {
 
+
+
         if(auth()->user()->isAbleTo('c')){
             return view('dashboard.add');
         }else{
@@ -47,19 +51,35 @@ class UserController extends Controller
 
 
 
+        
+
+
 
        $this->validate($q, [
-
         'username' => 'required',
         'password' => 'required|confirmed',
         'l_name' => 'required',
         'f_name' => 'required',
         'email' => 'required',
+        'image' => 'image|max:500|min:5|nullable',
        ]);
 
        $password =  bcrypt($q->password); 
         
     
+
+    if($q->image){
+        // open and resize an image file
+        $img = Image::make($q->image->getRealPath());
+        $img->insert($q->image->getRealPath())->resize(300, null, function ($constraint) {
+    $constraint->aspectRatio();
+});;
+        $img->save(public_path('upload/users/'.$q->image->hashName()) );
+
+        $image = $q->image->hashName() ;
+    }else{
+        $image = 'default.png' ;
+    }
 
 
         $user =  User::create([
@@ -67,10 +87,14 @@ class UserController extends Controller
              'last_name' => $q->l_name ,
              'email' => $q->email ,
              'password' => $password ,
+             'image' => $image ,
 
          ]);
 
-        $user->syncPermissions($q->permission);
+        if($q->permission){
+            $user->syncPermissions($q->permission);
+        }
+        
 
          notify()->success('Sccess To Add User');
 
@@ -151,9 +175,30 @@ class UserController extends Controller
             $user->last_name = $q->l_name ;
             $user->email = $q->email ;
             
-            $user->save();
+          
 
-            $user->syncPermissions($q->permission_Users);
+        if($q->image){
+
+            if($user->image !='default.png'){
+             $image =  File::delete('upload/users/'.$user->image);
+            }
+
+            $img = Image::make($q->image->getRealPath());
+            $img->insert($q->image->getRealPath())->resize(300, null, function ($constraint) {
+            $constraint->aspectRatio();
+            });
+        $img->save(public_path('upload/users/'.$q->image->hashName()) );
+
+         $user->image = $q->image->hashName() ;
+
+        }
+
+          $user->save();
+
+            if($q->permission_Users){
+                 $user->syncPermissions($q->permission_Users);
+            }
+           
 
 
 
@@ -173,7 +218,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+
+
         $user = User::find($id);
+
+     
+
+        if($user->image !='default.png'){
+             $image =  File::delete('upload/users/'.$user->image);
+        }
 
         $user->delete() ;
 

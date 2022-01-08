@@ -10,8 +10,10 @@
 
      <x:notify-messages />
      
-<form action="{{route('users.store')}}" method='post'>
+<form action="{{route('users.store')}}" method='POST' enctype="multipart/form-data">
 	<input type="hidden" name="_token" value='{{csrf_token()}}'>
+
+	
 <div class='add'>
 	<div class='container'>
 		<div class='row'>
@@ -49,6 +51,11 @@
 				<label>@lang('user.email')</label>
 				<input type="text" name="email" class='form-control' value='{{old("email")}}'>
 			</div>
+
+			<div class='col-6'>
+				<label>@lang('user.image')</label>
+				<input type="file" name="image" class='form-control'>
+			</div>
 			<hr>
 			
 				
@@ -59,8 +66,10 @@
 		<br>
 		@php
 
-$roles = ['users' , 'catigory' , 'products'];
+$roles = ['user' , 'catigory' , 'products'];
 $permissions = DB::table('permissions')->get();
+
+
 
 @endphp
 
@@ -77,11 +86,26 @@ $permissions = DB::table('permissions')->get();
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
     	@foreach($roles as $index => $row)
+
+    		{{-- Users Permissions --}}
     		  <div class="tab-pane fade show {{ $active = $index == 0 ? 'active' : '' }}" id="list-{{$row}}" role="tabpanel" aria-labelledby="list-home-list">
+    		  	
     		  	@foreach($permissions as $rows)
+    		  	@if($rows->description == $row)
     		  	<label><input type='checkbox' name='permission[]' value='{{$rows->id}}'> {{$rows->display_name}}</label>
+    		  	@endif
     		  	@endforeach
     		  </div>
+
+
+    		 
+
+
+
+    		 
+
+    	
+
     	@endforeach
     </div>
   </div>

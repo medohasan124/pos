@@ -212,10 +212,12 @@
               </li>
 
 
-             <li class="nav-item">
-                <a href="{{route('users.create')}}" class="nav-link active">
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p> @lang('user.add')</p>
+
+
+              <li class="nav-item">
+                <a href="{{route('catigory.index')}}" class="nav-link active">
+                  <i class="fas fa-list"></i>
+                  <p> @lang('user.catigories')</p>
                 </a>
               </li>
 

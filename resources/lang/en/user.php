@@ -31,6 +31,11 @@ return [
     'f_name'=> 'Fisrst Name' ,
     'l_name'=> 'Last Name' ,
     'email'=> 'Email' ,
+    'image'=> 'Image' ,
+
+    //catigory
+
+    'catigories' => 'Catigories',
 
 
    

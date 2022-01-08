@@ -10,7 +10,7 @@
 
      <x:notify-messages />
      
-<form action="{{route('users.update' , $id)}}" method='POST'>
+<form action="{{route('users.update' , $id)}}" method='POST' enctype='multipart/form-data'>
 	{{csrf_field()}}
 	{{method_field('put')}}
 
@@ -51,6 +51,15 @@
 				<label>@lang('user.email')</label>
 				<input type="text" name="email" class='form-control' value='{{$data->email}}'>
 			</div>
+
+			<div class='col-6'>
+				<label>@lang('user.image')</label>
+				<input type="file" name="image" value='' class='form-control'>
+			</div>
+
+			<div class='col-6'>
+				<img src='{{asset("upload/users")."/".$data->image}}' width='100px' height='100px' class='img-fluid img-thumbnails'>
+			</div>
 			<hr>
 			
 				
@@ -61,7 +70,7 @@
 		<br>
 		@php
 
-$roles = ['users' , 'catigory' , 'products'];
+$roles = ['user' , 'catigory' , 'products'];
 $permissions = DB::table('permissions')->get();
 $permission_user = DB::table('permission_user')->where('user_id' , $id)->orderBy('permission_id' , 'desc')->get('permission_id');
 
@@ -86,13 +95,18 @@ $permission_user = DB::table('permission_user')->where('user_id' , $id)->orderBy
     		  <div class="tab-pane fade show {{ $active = $index == 0 ? 'active' : '' }}" id="list-{{$row}}" role="tabpanel" aria-labelledby="list-home-list">
 
     		  	@foreach($permissions as $indexs => $rows)
+
+    		  	@if($rows->description == $row)
     		  	<label><input type='checkbox'
 
-    		  		@if($data->isAbleTo($rows->name) && $index == 0)
+    		  		@if($data->isAbleTo($rows->name))
     		  			checked
     		  		@endif
 
     		  	 name='permission_Users[]' value='{{$rows->id}}'> {{$rows->display_name}}</label>
+    		  	 @endif
+
+
     		  	@endforeach
     		  </div>
     	@endforeach

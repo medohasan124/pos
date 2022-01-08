@@ -16,6 +16,7 @@
 	      <th scope="col">first_name</th>
 	      <th scope="col">last_name</th>
 	      <th scope="col">email</th>
+	      <th scope="col">image</th>
 	      <th scope="col">Controle</th>
 	    </tr>
 	  </thead>
@@ -52,6 +53,8 @@
 	  		<td>{{$row->first_name}}</td>
 	  		<td>{{$row->last_name}}</td>
 	  		<td>{{$row->email}}</td>
+
+	  		<td><img src="{{asset('upload/users/'.$row->image)}}" width='50px' height='50px' class='img-fluid img-thumbnails'></td>
 	  		<td>
 
 	  			@if(auth()->user()->isAbleTo('e'))

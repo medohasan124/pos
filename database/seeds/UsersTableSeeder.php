@@ -19,38 +19,38 @@ class UsersTableSeeder extends Seeder
 $super_admin = Role::create([
     'name' => 'super_admin',
     'display_name' => 'Project Super admin', // optional
-    'description' => 'User is the Super of a given project', // optional
+    'description' => 'user', // optional
 ]);
 
 $admin = Role::create([
     'name' => 'Admin',
     'display_name' => 'User Admins', // optional
-    'description' => 'is allowed to manage and edit other users', // optional
+    'description' => 'user', // optional
 ]);
 
 
  $c = Permission::create([
  'name' => 'c',
  'display_name' => 'Create Users', // optional
- 'description' => 'create new blog posts', // optional
+ 'description' => 'user', // optional
  ]);
 
  $e = Permission::create([
  'name' => 'e',
  'display_name' => 'Edit Users', // optional
- 'description' => 'edit existing users', // optional
+ 'description' => 'user', // optional
  ]);
 
  $u = Permission::create([
  'name' => 'u',
  'display_name' => 'Update Users', // optional
- 'description' => 'Update new blog posts', // optional
+ 'description' => 'user', // optional
  ]);
 
  $d = Permission::create([
  'name' => 'd',
  'display_name' => 'Delete Users', // optional
- 'description' => 'Delete existing users', // optional
+ 'description' => 'user', // optional
  ]);
 
 

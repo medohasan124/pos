@@ -31,6 +31,9 @@ Route::prefix('dashboard')->name('dashboard')->group(function(){
 Route::resource('users', 'UserController');
 
 
+Route::resource('catigory', 'catigories');
+
+
 Route::get('logOut', function(){
 	Auth::logout();
   return redirect('/');
