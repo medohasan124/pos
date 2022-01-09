@@ -222,6 +222,13 @@
               </li>
 
                <li class="nav-item">
+                <a href="{{route('items.index')}}" class="nav-link active">
+                 <i class="fas fa-cubes"></i>
+                  <p> @lang('user.item')</p>
+                </a>
+              </li>
+
+               <li class="nav-item">
                 <a href="logOut" class="nav-link active">
                  <i class="fas fa-sign-out-alt"></i>
                   <p> @lang('user.logout')</p>

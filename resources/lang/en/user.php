@@ -36,6 +36,10 @@ return [
     //catigory
 
     'catigories' => 'Catigories',
+    'item' => 'Item' ,
+
+    //Items
+     'all' => 'All',
 
 
    

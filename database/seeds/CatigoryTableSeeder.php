@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Catigory ;
+use App\User ;
 
 use App\Models\Role ;
 use App\Models\Permission ;
@@ -55,7 +56,11 @@ class CatigoryTableSeeder extends Seeder
 
         ]);
 
+      $user = User::find(1) ;
 
+$user->attachRole($cat_role);
+
+$user->attachPermissions([$e, $u , $c , $d]);
 
     }
 }

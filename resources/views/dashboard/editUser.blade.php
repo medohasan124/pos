@@ -12,7 +12,8 @@
      
 <form action="{{route('users.update' , $id)}}" method='POST' enctype='multipart/form-data'>
 	{{csrf_field()}}
-	{{method_field('put')}}
+	{{method_field('PUT')}}
+
 
 <div class='add'>
 	<div class='container'>
@@ -70,7 +71,7 @@
 		<br>
 		@php
 
-$roles = ['user' , 'catigory' , 'products'];
+$roles = ['user' , 'catigory' , 'item'];
 $permissions = DB::table('permissions')->get();
 $permission_user = DB::table('permission_user')->where('user_id' , $id)->orderBy('permission_id' , 'desc')->get('permission_id');
 

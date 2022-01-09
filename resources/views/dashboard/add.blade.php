@@ -66,7 +66,7 @@
 		<br>
 		@php
 
-$roles = ['user' , 'catigory' , 'products'];
+$roles = ['user' , 'catigory' , 'item'];
 $permissions = DB::table('permissions')->get();
 
 

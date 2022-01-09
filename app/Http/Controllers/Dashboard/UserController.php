@@ -73,7 +73,7 @@ class UserController extends Controller
         $img = Image::make($q->image->getRealPath());
         $img->insert($q->image->getRealPath())->resize(300, null, function ($constraint) {
     $constraint->aspectRatio();
-});;
+});
         $img->save(public_path('upload/users/'.$q->image->hashName()) );
 
         $image = $q->image->hashName() ;

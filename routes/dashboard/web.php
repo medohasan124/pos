@@ -32,6 +32,7 @@ Route::resource('users', 'UserController');
 
 
 Route::resource('catigory', 'catigories');
+Route::resource('items', 'itemController');
 
 
 Route::get('logOut', function(){

@@ -45,8 +45,6 @@ class catigories extends Controller
             'name_en' => 'required' ,
             'name_ar' => 'required' ,
         ]);
-
-
          Catigory::create($data);
          notify()->success('Sccess To Add catigory');
 
