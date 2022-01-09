@@ -123,7 +123,7 @@ $('.deleteBtn').on('click' , function(){
 	splets.push(id) ;
 	splets[1] = '/';
 
-
+	console.log(splets);
 
 	$('.modalAction').attr('action' , '{{url("items")}}/'+id);
 
