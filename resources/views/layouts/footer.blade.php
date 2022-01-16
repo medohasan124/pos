@@ -39,6 +39,6 @@
 
 @notifyJs
 
-@stack('dataTables')
+@stack('scripts')
 </body>
 </html>

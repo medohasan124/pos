@@ -32,6 +32,7 @@ return [
     'l_name'=> 'Last Name' ,
     'email'=> 'Email' ,
     'image'=> 'Image' ,
+    'location'=> 'Location' ,
 
     //catigory
 
@@ -41,6 +42,30 @@ return [
     //Items
      'all' => 'All',
 
+     'clients' => 'Clients',
+     'store' => 'Store',
+     'price' => 'Price',
+     'orders' => 'Orders',
+     'order_number' => 'Order Number',
+     'number' => 'Number',
+     'count' => 'Count',
+     'total' => 'Total',
+     'sale' => 'Sale',
+     'history' => 'History',
+      'leveles' => 'Leveles', 
+      'active' => 'Active', 
+      'wait' => 'Wating', 
+      'back' => 'Close', 
+      'controle' => 'Controle',
+      'print' => 'Print',
+      'time' => 'Time',
+      'invoice' => 'Invoice',
+      'detalse' => 'Detalse',
+      'date' => 'Date',
+      'info' => 'Information',
+      'user_info' => 'User Information',
+      'client_info' => 'Client Information',
+      'item_count' => 'Item Count ',
 
    
 

@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
-class items extends Model
+class orderhistory extends Model
 {
-    use Notifiable ;
+	   use Notifiable ;
     
     protected $fillable = [
 
-    	'name_en' , 'name_ar' ,'cat_id' ,'price' , 'store' , 'image' ,'description'
-    ];
+  
+    'user_id','client_id' ,'item_id' , 'item_count' ,'order_id' ,  'price' , 'active'
+
+      ];
 }

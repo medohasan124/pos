@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Catigory ;
-class catigories extends Controller
+use App\Client ;
+
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class catigories extends Controller
      */
     public function index()
     {
-       $data = Catigory::all();
-
-        return view('catigory.index' , compact('data'));
+       $data = Client::all();
+        return view('client.index' , compact('data'));
     }
 
     /**
@@ -26,8 +26,8 @@ class catigories extends Controller
      */
     public function create()
     {
-        if(auth()->user()->isAbleTo('cat_c')){
-            return view('Catigory.add');
+        if(auth()->user()->isAbleTo('client_c')){
+            return view('client.add');
         }else{
             return back();
         }
@@ -41,13 +41,18 @@ class catigories extends Controller
      */
     public function store(Request $request)
     {
-      $data =   $this->validate($request , [
-            'name_en' => 'required' ,
-            'name_ar' => 'required' ,
+         $data =   $this->validate($request , [
+            'username' => 'required' ,
+            'number' => 'required' ,
+            'location' => 'required',
+            'email' => 'email|required',
         ]);
-         Catigory::create($data);
-         notify()->success('Sccess To Add catigory');
-        return redirect()->route('catigory.index');
+
+         
+         Client::create($data);
+         notify()->success('Sccess To Add Client');
+
+        return redirect()->route('client.index');
     }
 
     /**
@@ -69,14 +74,12 @@ class catigories extends Controller
      */
     public function edit($id)
     {
-         if(auth()->user()->isAbleTo('cat_e')){
-          $data = Catigory::find($id);
-        return view('catigory.edit' , compact('data'));
+         if(auth()->user()->isAbleTo('client_e')){
+          $data = Client::find($id);
+        return view('client.edit' , compact('data'));
         }else{
             return back();
         }
-        
-
     }
 
     /**
@@ -88,26 +91,24 @@ class catigories extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
+        
        $data =   $this->validate($request , [
-            'name_en' => 'required|unique:catigories,name_en,'.$id ,
-            'name_ar' => 'required|unique:catigories,name_en,'.$id ,
+             'username' => 'required' ,
+            'number' => 'required' ,
+            'location' => 'required',
+            'email' => 'email|required',
         ]);
 
-      
+        $client =  Client::find($id);
+        $client->username = $request->username ;
+        $client->number = $request->number ;
+        $client->location = $request->location ;
+        $client->email = $request->email ;
+        $client->save() ;
 
-        $cat =  Catigory::find($id);
-        $cat->name_en = $request->name_en ;
-        $cat->name_ar = $request->name_ar ;
-        $cat->save() ;
+        notify()->success('Sccess To update Client');
 
-
-
-
-         notify()->success('Sccess To update catigory');
-
-        return redirect()->route('catigory.index');
+        return redirect()->route('client.index');
     }
 
     /**
@@ -118,11 +119,13 @@ class catigories extends Controller
      */
     public function destroy($id)
     {
-       if(auth()->user()->isAbleTo('cat_e')){
+       if(auth()->user()->isAbleTo('client_e')){
 
-              Catigory::find($id)->delete();
+              Client::find($id)->delete();
 
-             return redirect()->route('catigory.index');
+              notify()->success('Sccess To Delete Client');
+
+             return redirect()->route('client.index');
 
        }else{
         return back();

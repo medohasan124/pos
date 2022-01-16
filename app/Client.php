@@ -5,12 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
-class items extends Model
+class Client extends Model
 {
     use Notifiable ;
     
     protected $fillable = [
-
-    	'name_en' , 'name_ar' ,'cat_id' ,'price' , 'store' , 'image' ,'description'
+		'username'  , 'number' , 'location' , 'email' ,
     ];
+
+
+
+
+    
 }

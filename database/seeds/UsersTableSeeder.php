@@ -57,6 +57,7 @@ $admin = Role::create([
  $user = User::create([
   'first_name' => 'medo' ,
   'last_name' => 'hassan' ,
+  'image' => 'default.png' ,
   'password' => bcrypt('123123'),
   'email' => 'medo@yahoo.com' ,
 ]);

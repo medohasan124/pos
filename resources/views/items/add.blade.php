@@ -50,6 +50,11 @@
 				<input type="number" name="price" class='form-control' required value='{{old("price")}}'>
 			</div>
 
+			<div class='col-6'>
+				<label>@lang('user.store')</label>
+				<input type="number" name="store" class='form-control' required value='{{old("store")}}'>
+			</div>
+
 
 			<div class='col-6'>
 				<label>@lang('user.image')</label>

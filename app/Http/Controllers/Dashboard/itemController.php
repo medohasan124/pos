@@ -57,9 +57,10 @@ class itemController extends Controller
     public function store(Request $q)
     {
         $data =   $this->validate($q, [
-        'name_en' => 'required',
-        'name_ar' => 'required',
+        'name_en' => 'required|unique:items,name_en',
+        'name_ar' => 'required|unique:items,name_ar',
         'price' => 'required',
+        'store' => 'required',
         'cat_id' => 'required',
         'image' => 'image|max:500|min:5|nullable',
        ]);
@@ -82,7 +83,7 @@ class itemController extends Controller
     
 
 
-
+   
 
      $user =  items::create($data);
 
@@ -140,6 +141,7 @@ class itemController extends Controller
         'name_en' => 'required',
         'name_ar' => 'required',
         'price' => 'required',
+        'store' => 'required',
         'cat_id' => 'required',
         'image' => 'image|max:500|min:5|nullable',
        ]);
@@ -151,6 +153,7 @@ class itemController extends Controller
             $items->name_en = $q->name_en ;
             $items->name_ar = $q->name_ar ;
             $items->price = $q->price ;
+            $items->store = $q->store ;
             $items->cat_id = $q->cat_id ;
 
 

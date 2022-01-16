@@ -52,6 +52,7 @@ class ItemTableSeeder extends Seeder
             'name_ar' => 'تجربة 2' ,
              'cat_id' => 1,
              'price' => 5.50 ,
+             'store' => 100 ,
               'image' => 'default.png',
               'description' => 'this is a small description for Item'
 
@@ -62,6 +63,7 @@ class ItemTableSeeder extends Seeder
             'name_ar' => 'تجربة' ,
              'cat_id' => 1,
              'price' => 5.50 ,
+             'store' => 300 ,
               'image' => 'default.png',
               'description' => 'this is a small description for Item'
 

@@ -13,9 +13,11 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">#</th>
-	      <th scope="col">name_En</th>
-	      <th scope="col">name_Ar</th>
-	      <th scope="col">Controle</th>
+	      <th scope="col">username</th>
+	      <th scope="col">Number</th>
+	      <th scope="col">location</th>
+	      <th scope="col">email</th>
+	      <th scope="col">Controller</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -27,8 +29,8 @@
 
 
 	  				<div class='col-3'>
-	  					@if(auth()->user()->isAbleTo('cat_c'))
-	  					<a href='{{route('catigory.create')}}' class='btn btn-success'><i class='fas fa-plus'></i>  @lang('user.add') </a>
+	  					@if(auth()->user()->isAbleTo('client_c'))
+	  					<a href='{{route('client.create')}}' class='btn btn-success'><i class='fas fa-plus'></i>  @lang('user.add') </a>
 	  					@endif
 	  				</div>
 	  				
@@ -41,18 +43,21 @@
 
 	  	<tr>
 	  		<td>{{$row->id}}</td>
-	  		<td>{{$row->name_en}}</td>
-	  		<td>{{$row->name_ar}}</td>
+	  		<td>{{$row->username}}</td>
+	  		<td>{{$row->number}}</td>
+	  		<td>{{$row->location}}</td>
+	  		<td>{{$row->email}}</td>
+	  		
 	  		
 
 	  			<td>
-	  			@if(auth()->user()->isAbleTo('cat_e'))
+	  			@if(auth()->user()->isAbleTo('client_e'))
 	  			
-	  			<a href='{{route("catigory.edit" , $row->id)}}' class="btn btn-primary">@lang('user.edit') <i class='fa fa-edit'></i></a>
+	  			<a href='{{route("client.edit" , $row->id)}}' class="btn btn-primary">@lang('user.edit') <i class='fa fa-edit'></i></a>
 	  			
 	  			@endif
 	  		
-	  			@if(auth()->user()->isAbleTo('cat_d'))
+	  			@if(auth()->user()->isAbleTo('client_d'))
 		  			
 		  			<a  id='{{$row->id}}' href='#' data-toggle="modal" data-target="#delete-{{$row->id}}" class="btn btn-danger deleteBtn">@lang('user.delete') <i class='fa fa-trash'></i></a>
 		  			
@@ -106,7 +111,7 @@ $('.deleteBtn').on('click' , function(){
 
 	console.log(splets);
 
-	$('.modalAction').attr('action' , '{{url("catigory")}}/'+id);
+	$('.modalAction').attr('action' , '{{url("client")}}/'+id);
 
 	
 })

@@ -33,6 +33,17 @@ Route::resource('users', 'UserController');
 
 Route::resource('catigory', 'catigories');
 Route::resource('items', 'itemController');
+Route::resource('client', 'ClientController');
+Route::resource('order', 'order');
+Route::post('lastOrder', 'lastOrder@sale')->name('lastOrder');
+
+
+Route::get('history', 'lastOrder@history')->name('history');
+Route::get('/detales/{id}', 'lastOrder@detales')->name('detales');
+Route::post('/singelback/{id}', 'lastOrder@singelback')->name('singelback');
+Route::post('/backAll/{id}', 'lastOrder@backAll')->name('backAll');
+Route::post('/checkAll/{id}', 'lastOrder@checkAll')->name('checkAll');
+
 
 
 Route::get('logOut', function(){

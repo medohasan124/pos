@@ -83,7 +83,7 @@
 
 @endsection
 
-@push('dataTables')
+@push('scripts')
 
 <script>
 	

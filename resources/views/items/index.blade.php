@@ -10,21 +10,6 @@
 
 	<h1>@lang('user.item')</h1>
 	   <x:notify-messages />
-
-	<table class="table table-striped text-center" id='test'>
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">nme_en</th>
-	      <th scope="col">nme_ar</th>
-	      <th scope="col">price</th>
-	      <th scope="col">catigory</th>
-	      <th scope="col">image</th>
-	      <th scope="col">Controle</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-
 	  	<div class='search'>
 	  		<div class='container'>
 	  			<div class='row'>
@@ -55,6 +40,22 @@
 	  		</div>
 	  	</div>
 
+	<table class="table table-striped text-center" id='myTable'>
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">nme_en</th>
+	      <th scope="col">nme_ar</th>
+	      <th scope="col">price</th>
+	      <th scope="col">store</th>
+	      <th scope="col">catigory</th>
+	      <th scope="col">image</th>
+	      <th scope="col">Controle</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+
 
 	  	@foreach($data as $row)
 
@@ -63,6 +64,7 @@
 	  		<td>{{$row->name_en}}</td>
 	  		<td>{{$row->name_ar}}</td>
 	  		<td>{{$row->price}}</td>
+	  		<td>{{$row->store}}</td>
 	  		<td>{{$row->cat_name}}</td>
 
 	  		<td><img src="{{asset('upload/items/'.$row->image)}}" width='50px' height='50px' class='img-fluid img-thumbnails'></td>
@@ -94,12 +96,12 @@
 
 @endsection
 
-@push('dataTables')
+@push('scripts')
 
 <script>
 	
 	$(document).ready( function () {
-    $('#test').DataTable();
+    $('#myTable').DataTable();
 } );
 
 

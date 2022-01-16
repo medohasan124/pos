@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Catigory ;
 use App\User ;
-
 use App\Models\Role ;
 use App\Models\Permission ;
 class CatigoryTableSeeder extends Seeder
@@ -51,8 +50,19 @@ class CatigoryTableSeeder extends Seeder
 
        $cat = Catigory::create([
 
-            'name_en' => 'test 1' ,
-            'name_ar' => 'تجربة'
+            'name_en' => 'foods' ,
+            'name_ar' => 'اطعمة'
+
+        ]);
+          $cat = Catigory::create([
+
+            'name_en' => 'Drinks' ,
+            'name_ar' => 'مشروبات'
+
+        ]);  $cat = Catigory::create([
+
+            'name_en' => 'snakse' ,
+            'name_ar' => 'تسالي'
 
         ]);
 

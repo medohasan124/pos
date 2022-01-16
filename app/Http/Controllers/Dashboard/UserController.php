@@ -193,7 +193,12 @@ class UserController extends Controller
 
         }
 
+
+       
+
           $user->save();
+
+
 
             if($q->permission_Users){
                  $user->syncPermissions($q->permission_Users);

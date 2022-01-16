@@ -71,7 +71,7 @@
 		<br>
 		@php
 
-$roles = ['user' , 'catigory' , 'item'];
+$roles = ['user' , 'catigory' , 'item' , 'client'];
 $permissions = DB::table('permissions')->get();
 $permission_user = DB::table('permission_user')->where('user_id' , $id)->orderBy('permission_id' , 'desc')->get('permission_id');
 

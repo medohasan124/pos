@@ -198,14 +198,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('dashboard')}}" class="nav-link active">
+                <a href="{{route('dashboard')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p> @lang('user.dashboard')</p>
                 </a>
               </li> 
 
                <li class="nav-item">
-                <a href="{{route('users.index')}}" class="nav-link active">
+                <a href="{{route('users.index')}}" class="nav-link ">
                   <i class="fas fa-users nav-icon"></i>
                   <p> @lang('user.users')</p>
                 </a>
@@ -215,21 +215,45 @@
 
 
               <li class="nav-item">
-                <a href="{{route('catigory.index')}}" class="nav-link active">
+                <a href="{{route('catigory.index')}}" class="nav-link ">
                   <i class="fas fa-list"></i>
                   <p> @lang('user.catigories')</p>
                 </a>
               </li>
 
+
+
                <li class="nav-item">
-                <a href="{{route('items.index')}}" class="nav-link active">
+                <a href="{{route('items.index')}}" class="nav-link ">
                  <i class="fas fa-cubes"></i>
                   <p> @lang('user.item')</p>
                 </a>
               </li>
 
+
+                <li class="nav-item">
+                <a href="{{route('client.index')}}" class="nav-link ">
+                 <i class="fas fa-user"></i>
+                  <p> @lang('user.clients')</p>
+                </a>
+              </li> 
+
+              <li class="nav-item">
+                <a href="{{route('order.index')}}" class="nav-link ">
+                 <i class="fas fa-shopping-cart"></i>
+                  <p> @lang('user.orders')</p>
+                </a>
+              </li>
+
                <li class="nav-item">
-                <a href="logOut" class="nav-link active">
+                <a href="{{route('history')}}" class="nav-link ">
+                <i class="fas fa-history"></i>
+                  <p> @lang('user.history')</p>
+                </a>
+              </li>
+
+               <li class="nav-item">
+                <a href="logOut" class="nav-link ">
                  <i class="fas fa-sign-out-alt"></i>
                   <p> @lang('user.logout')</p>
                 </a>

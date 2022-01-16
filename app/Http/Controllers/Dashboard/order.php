@@ -4,20 +4,36 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\items ;
 use App\Catigory ;
-class catigories extends Controller
+use App\Client ;
+
+class order extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $q)
     {
-       $data = Catigory::all();
 
-        return view('catigory.index' , compact('data'));
+        if($q['id']){
+             $items = items::where('cat_id' , $q['id'])->get();
+             
+            return json_encode($items);
+        }
+       
+       $items = [];
+       $cat = Catigory::all();
+       $client = Client::all();
+
+       return view('order.index' , compact('items' ,'cat' , 'client'));
+
+
     }
+
+   
 
     /**
      * Show the form for creating a new resource.
@@ -26,11 +42,7 @@ class catigories extends Controller
      */
     public function create()
     {
-        if(auth()->user()->isAbleTo('cat_c')){
-            return view('Catigory.add');
-        }else{
-            return back();
-        }
+        //
     }
 
     /**
@@ -41,13 +53,7 @@ class catigories extends Controller
      */
     public function store(Request $request)
     {
-      $data =   $this->validate($request , [
-            'name_en' => 'required' ,
-            'name_ar' => 'required' ,
-        ]);
-         Catigory::create($data);
-         notify()->success('Sccess To Add catigory');
-        return redirect()->route('catigory.index');
+        //
     }
 
     /**
@@ -69,14 +75,7 @@ class catigories extends Controller
      */
     public function edit($id)
     {
-         if(auth()->user()->isAbleTo('cat_e')){
-          $data = Catigory::find($id);
-        return view('catigory.edit' , compact('data'));
-        }else{
-            return back();
-        }
-        
-
+        //
     }
 
     /**
@@ -88,26 +87,7 @@ class catigories extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-       $data =   $this->validate($request , [
-            'name_en' => 'required|unique:catigories,name_en,'.$id ,
-            'name_ar' => 'required|unique:catigories,name_en,'.$id ,
-        ]);
-
-      
-
-        $cat =  Catigory::find($id);
-        $cat->name_en = $request->name_en ;
-        $cat->name_ar = $request->name_ar ;
-        $cat->save() ;
-
-
-
-
-         notify()->success('Sccess To update catigory');
-
-        return redirect()->route('catigory.index');
+        //
     }
 
     /**
@@ -118,14 +98,6 @@ class catigories extends Controller
      */
     public function destroy($id)
     {
-       if(auth()->user()->isAbleTo('cat_e')){
-
-              Catigory::find($id)->delete();
-
-             return redirect()->route('catigory.index');
-
-       }else{
-        return back();
-       }
+        //
     }
 }

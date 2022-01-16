@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name_ar')->unique();
             $table->unsignedBigInteger('cat_id')->nullable();
             $table->integer('price')->default(0);
+            $table->integer('store')->default(0);
             $table->string('image')->default('default');
             $table->text('description')->nullable();
             $table->timestamps();
