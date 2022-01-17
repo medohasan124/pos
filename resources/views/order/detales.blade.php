@@ -31,38 +31,9 @@
 	  <hr>
 
 	  <div class='row'>
-	  	<div class='col-6  '>
-	  		
-	  		<div class="card" style="width: 18rem;">
-			  <div class="card-header">
-			    <h2 class='h4'>@lang('user.user_info')</h2>
-			  </div>
-
-			  
-			  
-			  <ul class="list-group list-group-flush">
-			    <li class="list-group-item"><strong>@lang('user.f_name')</strong> :
-			    	{{$user->first_name}}
-			    	
-			    </li>
-
-			    <li class="list-group-item"><strong>@lang('user.number')</strong> :
-			    	{{$client->number}}
-			    </li>
-
-			     <li class="list-group-item"><strong>@lang('user.location')</strong> :
-			    	{{$client->location}}
-			    </li>
-
-			    <li class="list-group-item"><strong>@lang('user.email')</strong> :
-			    	{{$client->email}}
-			    </li>
-			   
-			  </ul>
-			</div>
-
-	  	</div>
-	  	<div class='col-6  '>
+	  	
+	  	
+	  	<div class='col'>
 	  		
 	  		<div class="card" style="width: 18rem;">
 			  <div class="card-header">

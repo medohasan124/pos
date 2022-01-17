@@ -66,6 +66,11 @@ return [
       'user_info' => 'User Information',
       'client_info' => 'Client Information',
       'item_count' => 'Item Count ',
+      'settings' => 'Settings',
+       'description' => 'Description',
+       'phone1' => 'phone1',
+       'phone2' => 'phone2',
+       'logo' => 'Logo',
 
    
 

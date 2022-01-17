@@ -32,6 +32,7 @@
 <script src="{{asset('/dist/js/adminlte.js')}}"></script>
 <script src="{{asset('/plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('/vue/vue.js')}}"></script>
+<script src="{{asset('/js/printThis.js')}}"></script>
 
 
 

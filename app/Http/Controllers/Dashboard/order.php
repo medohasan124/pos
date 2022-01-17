@@ -18,6 +18,8 @@ class order extends Controller
     public function index(Request $q)
     {
 
+        if(auth()->user()->isAbleTo('item_c')){
+
         if($q['id']){
              $items = items::where('cat_id' , $q['id'])->get();
              
@@ -31,7 +33,12 @@ class order extends Controller
        return view('order.index' , compact('items' ,'cat' , 'client'));
 
 
-    }
+    
+}else{
+    return redirect()->back();
+}
+
+}
 
    
 

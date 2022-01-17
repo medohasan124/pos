@@ -198,12 +198,16 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+
+
                 <a href="{{route('dashboard')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p> @lang('user.dashboard')</p>
                 </a>
               </li> 
 
+
+               @if(auth()->user()->isAbleTo('c'))
                <li class="nav-item">
                 <a href="{{route('users.index')}}" class="nav-link ">
                   <i class="fas fa-users nav-icon"></i>
@@ -211,9 +215,11 @@
                 </a>
               </li>
 
+              @endif
 
 
 
+              @if(auth()->user()->isAbleTo('cat_c'))
               <li class="nav-item">
                 <a href="{{route('catigory.index')}}" class="nav-link ">
                   <i class="fas fa-list"></i>
@@ -221,8 +227,10 @@
                 </a>
               </li>
 
+              @endif
 
 
+               @if(auth()->user()->isAbleTo('item_c'))
                <li class="nav-item">
                 <a href="{{route('items.index')}}" class="nav-link ">
                  <i class="fas fa-cubes"></i>
@@ -230,7 +238,9 @@
                 </a>
               </li>
 
+              @endif
 
+               @if(auth()->user()->isAbleTo('client_c'))
                 <li class="nav-item">
                 <a href="{{route('client.index')}}" class="nav-link ">
                  <i class="fas fa-user"></i>
@@ -238,6 +248,10 @@
                 </a>
               </li> 
 
+              @endif
+
+
+                @if(auth()->user()->isAbleTo('item_c'))
               <li class="nav-item">
                 <a href="{{route('order.index')}}" class="nav-link ">
                  <i class="fas fa-shopping-cart"></i>
@@ -245,12 +259,23 @@
                 </a>
               </li>
 
+              @endif
+              @if(auth()->user()->isAbleTo('item_c'))
                <li class="nav-item">
                 <a href="{{route('history')}}" class="nav-link ">
                 <i class="fas fa-history"></i>
                   <p> @lang('user.history')</p>
                 </a>
               </li>
+
+              @endif
+
+               <li class="nav-item">
+                <a href="{{route('settings.index')}}" class="nav-link ">
+                <i class="fas fa-tools"></i>
+                  <p> @lang('user.settings')</p>
+                </a>
+              </li> 
 
                <li class="nav-item">
                 <a href="logOut" class="nav-link ">

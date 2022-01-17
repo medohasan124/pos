@@ -18,9 +18,7 @@
 	      <th scope="col">@lang('user.order_number')</th>
 	      <th scope="col">@lang('user.username')</th>
 	      <th scope="col">@lang('user.clients')</th>
-	      
 	      <th scope="col">@lang('user.leveles')</th>
-	     
 	      <th scope="col">@lang('user.detalse')</th>
 	      
 	    </tr>
@@ -59,7 +57,9 @@
 	  		<td>
 	  			
 
-	  			<a href='{{route("detales" , [$row->order_id])}}' target='_blank' class='btn btn-primary'> <i class=' fas fa-info'></i></a>
+	  		<a href='{{route("detales" , [$row->order_id])}}' target='_blank' class='btn btn-primary'> <i class=' fas fa-info'></i></a>
+
+	  		<a href='{{route("print" , [$row->order_id])}}' target='_blank' class='btn btn-secondary'> <i class=' fas fa-print'></i></a>
 	  			
 
 
@@ -72,21 +72,7 @@
 	  	</tr>
 	  	@endforeach
 
-	  	<tr>
-	  		<td>
-	  			@if(isset($index))
-	  			{{$index + 2}}
-	  			@endif
-	  		
-	  	</td>
-	  		<td class='h3'>@lang('user.total')</td>
-	  		<td>-</td>
-	  		<td>-</td>
-	  		<td>-</td>
-	  		<td class='h5'>{{$total}}</td>
-	  		
-	  		
-	  	</tr>
+	  	
 		
 
 
@@ -112,6 +98,8 @@
 $('.paied').click(function(){
 	$('.modal-body').html('Are Yot Sure To Paid 500');
 });
+
+//$("#app").printThis();
 
 </script>
 

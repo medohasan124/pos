@@ -68,6 +68,11 @@ return [
        'item_name' => 'اسم المنتج',
        'item_count' =>'عدد المنتج',
        'info' => 'معلومات',
+       'settings' => 'الاعدادات',
+       'description' => 'الوصف',
+        'phone1' => 'هاتف 1',
+         'phone2' => 'هاتف 2',
+         'logo' => 'الشعار',
 
   
 

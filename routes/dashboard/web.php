@@ -40,9 +40,13 @@ Route::post('lastOrder', 'lastOrder@sale')->name('lastOrder');
 
 Route::get('history', 'lastOrder@history')->name('history');
 Route::get('/detales/{id}', 'lastOrder@detales')->name('detales');
+Route::get('/print/{id}', 'lastOrder@print')->name('print');
 Route::post('/singelback/{id}', 'lastOrder@singelback')->name('singelback');
 Route::post('/backAll/{id}', 'lastOrder@backAll')->name('backAll');
 Route::post('/checkAll/{id}', 'lastOrder@checkAll')->name('checkAll');
+
+Route::resource('settings', 'settingsController');
+
 
 
 

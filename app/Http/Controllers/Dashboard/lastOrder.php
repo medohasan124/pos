@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\items ;
 use App\User ;
+use App\settings ;
 use DB ;
 use App\Client ;
 use App\orderhistory ;
 class lastOrder extends Controller
 {
     public function sale(Request $q){
+
+       if(auth()->user()->isAbleTo('item_c')){
     	
 
     	$data = $this->validate($q , [
@@ -52,9 +55,15 @@ class lastOrder extends Controller
 
         return redirect()->route('order.index');
 
+      }else{
+        return redirect()->back();
+      }
+
     }
 
    public function history(){
+
+    if(auth()->user()->isAbleTo('item_c')){
    		$data = orderhistory::select([
    			'users.first_name' ,
    			'clients.username' ,
@@ -73,11 +82,17 @@ class lastOrder extends Controller
 
 
    		return view('order.history' , compact('data'));
+   }else{
+    return redirect()->back();
    }
+
+ }
 
 
 
    public function detales(Request $id){
+
+    if(auth()->user()->isAbleTo('item_c')){
 
     $orderId = $id->id ;
 
@@ -86,7 +101,7 @@ class lastOrder extends Controller
 
 
 
-   	$user = User::where('id' , $order->user_id)->get()->first();
+   	$settings = settings::all();
 
    		
    	$client = Client::where('id' , $order->client_id)->get()->first();
@@ -111,8 +126,12 @@ class lastOrder extends Controller
 	
    	
 
-   	return view('order.detales' , compact('user' , 'client' , 'order' , 'sumitem' , 'somorderOk' , 'somorderBack' ,'sumTotal' , 'orderId') );
+   	return view('order.detales' , compact('settings' , 'client' , 'order' , 'sumitem' , 'somorderOk' , 'somorderBack' ,'sumTotal' , 'orderId') );
+   }else{
+   return redirect()->back();
    }
+
+ }
 
    public function singelback(request $q){
     $id = $q->id ;
@@ -143,6 +162,8 @@ class lastOrder extends Controller
 
 
  public function checkAll(request $q){
+
+  if(auth()->user()->isAbleTo('item_c')){
     
     
 
@@ -171,13 +192,64 @@ class lastOrder extends Controller
       $item->store =  $minus;
       $item->save() ;
     }
-    
+
 
     DB::table('orderhistories')->where('order_id' , $id) ->where('active' , 0)->update(['active' => '1']);
 
        notify()->success('Sccess To  check Orders');
 
         return redirect()->back();
+   }else{
+    
+        return redirect()->back();
+   }
+
+ }
+
+ public function print(request $q , $id){
+
+    $order = orderhistory::where('order_id' , $id)->get();
+
+
+      $item =DB::table('orderhistories')->select([
+        'items.name_ar',
+        'items.price as item_price',
+        'orderhistories.*',
+        
+      ])
+
+      ->join('items' , 'items.id' , '=' , 'orderhistories.item_id')
+      ->where('order_id' , $order[0]->order_id)
+      ->get();
+
+    
+
+    $totalAll = orderhistory::where('order_id' , $id)->sum('price');
+ $clien_id = $order[0]->client_id  ;
+   
+    $settings = settings::get()->first();
+    $client = Client::find($clien_id);
+
+
+    
+
+ $sumitem =  orderhistory::where('order_id' , $id)->get()->count();
+    $somorderOk =  orderhistory::where('order_id' , $id)
+    ->where('active' , 1)
+    ->get()->count();
+    $somorderBack =  orderhistory::where('order_id' , $id)
+    ->where('active' , 2)
+    ->get()->count();
+
+    $sumTotal =  orderhistory::where('order_id' , $id)
+    ->where('active' , '!=' ,2)->sum('price');
+
+
+    
+
+
+    return view('order.print' ,compact('order' , 'settings' , 'client' , 'totalAll' , 'item' , 'sumitem' , 'somorderOk' , 'somorderBack' , 'sumTotal'));
+
    }
 
 
